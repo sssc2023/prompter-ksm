@@ -53,7 +53,7 @@ def document_to_db(uploaded_file, size):    # 문서 크기에 맞게 사이즈 
 if tv_file is not None:
     db_tv = document_to_db(tv_file, 500)
     db_ac = document_to_db(ac_file, 500)
-    hm_tv = document_to_db(hm_file, 300)
+    db_hm = document_to_db(hm_file, 300)
 
     #Choice
     st.header("기기를 선택하고 PDF에게 질문해보세요!!")
