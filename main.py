@@ -63,7 +63,7 @@ if uploaded_file is not None:
     #Question
     st.header("기기를 선택하고 PDF에게 질문해보세요!!")
 
-    if choice_box == menu[0]
+    if choice_box == menu[0]:
         data = tv_file.load()
         st.write(f"samsung_tv_manual.pdf : {len(data)}개의 페이지")
         st.write("---")
