@@ -4,4 +4,3 @@ pypdf
 chromadb
 tiktoken
 pysqlite3-binary
-st-click-detector
