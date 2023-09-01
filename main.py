@@ -20,9 +20,9 @@ st.write("---")
 uploaded_file = st.file_uploader("PDF 파일을 올려주세요!",type=['pdf'])
 st.write("---")
 
-menu = ['TV를 바라보셨나요?', '에어컨을 바라보셨나요?', '가습기를 바라보셨나요?']
-choice = st.radio('하나를 선택하세요!', menu)
-choice = st.selectbox('메뉴', menu)
+menu = ['TV', '에어컨', '가습기']
+choice = st.radio('type1 : radio', menu)
+choice = st.selectbox('type2 : selectbox', menu)
 
 def pdf_to_document(uploaded_file):
     temp_dir = tempfile.TemporaryDirectory()
