@@ -70,11 +70,11 @@ if uploaded_file is not None:
 
         question = st.text_input('질문을 입력하세요')
         if st.button('TV에게 질문하기'):
-        with st.spinner('Wait for it...'):
-            llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
-            qa_chain = RetrievalQA.from_chain_type(llm,retriever=db.as_retriever())
-            result = qa_chain({"query": question})
-            st.write(result["result"])
+            with st.spinner('Wait for it...'):
+                llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+                qa_chain = RetrievalQA.from_chain_type(llm,retriever=db.as_retriever())
+                result = qa_chain({"query": question})
+                st.write(result["result"])
 
 
     
