@@ -26,7 +26,6 @@ st.write("---")
 
 # 방 이미지
 cyworld_img = Image.open('cyworld-room.jpg')
-cyworld_img = cyworld_img.resize((794,398))
 st.image(cyworld_img)
 st.write("---")
 
