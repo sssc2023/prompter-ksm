@@ -20,6 +20,7 @@ st.write("---")
 # 방 이미지
 img = Image.open('cyworld-room.jpg')
 st.image(img)
+st.write("---")
 
 #파일 업로드
 #uploaded_file = st.file_uploader("PDF 파일을 올려주세요!",type=['pdf'])
@@ -62,7 +63,8 @@ if tv_file is not None:
     menu = ['TV', '에어컨', '가습기']    #options
     choice_box = st.radio('여기서 선택♥', menu)
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-
+    st.write("---")
+    
     if choice_box == menu[0]:
         data = tv_file.load()
         st.write(f"samsung_tv_manual.pdf : {len(data)}개의 페이지")
@@ -77,12 +79,12 @@ if tv_file is not None:
                 st.write(result["result"])
                 
     elif choice_box == menu[1]:
-        data = ac_file.load()
-        st.write(f"lg_ac_manual.pdf : {len(data)}개의 페이지")
-        st.write("---")
+        #data = ac_file.load()
+        #st.write(f"lg_ac_manual.pdf : {len(data)}개의 페이지")
+        #st.write("---")
 
         question = st.text_input('질문을 입력하세요')
-        if st.button('TV에게 질문하기'):
+        if st.button('에어컨에게 질문하기'):
             with st.spinner('Wait for it...'):
                 llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
                 qa_chain = RetrievalQA.from_chain_type(llm,retriever=db_ac.as_retriever())
