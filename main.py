@@ -53,14 +53,13 @@ if tv_file is not None:
     db_tv = document_to_db(tv_file, 500)
     db_ac = document_to_db(ac_file, 500)
     hm_tv = document_to_db(hm_file, 300)
- 
-    #Question
-    st.header("기기를 선택하고 PDF에게 질문해보세요!!")
+
+    #Choice
     menu = ['TV', '에어컨', '가습기']    #options
-    choice_box = st.radio('여기서 선택♥', menu)
-    # choice_box = st.selectbox('type2 : selectbox', menu)
-    st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-    st.write("---")
+    # choice_box = st.radio('기기를 선택하세요', menu)
+    # st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)    
+    choice_box = st.selectbox('기기를 선택하세요', menu)
+    st.header("기기를 선택하고 PDF에게 질문해보세요!!")
     
     if choice_box == menu[0]:
         question = st.text_input('질문을 입력하세요')
