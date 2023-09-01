@@ -24,36 +24,23 @@ st.image(img)
 #파일 업로드
 #uploaded_file = st.file_uploader("PDF 파일을 올려주세요!",type=['pdf'])
 
-#pdf 올려두기
+#파일 업로드
 # ["samsung_tv_manual.pdf", "lg_ac_manual.pdf", "winix_humidifier_manual.pdf"]
-uploaded_file = PyPDFLoader("samsung_tv_manual.pdf")
-data = uploaded_file.load()
-st.write(f"samsung_tv_manual.pdf : {len(data)}개의 페이지, 첫 페이지는 {len(data[0].page_content)}개의 단어")
-st.write("---")
-pages = uploaded_file.load_and_split()
+tv_file = PyPDFLoader("samsung_tv_manual.pdf")
+ac_file = PyPDFLoader("lg_ac_manual.pdf")
+hm_file = PyPDFLoader("winix_humidifier_manual.pdf")
 
 menu = ['TV', '에어컨', '가습기']    #options
-choice = st.radio('type1 : radio', menu)
+choice_box = st.radio('type1 : radio', menu)
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-choice = st.selectbox('type2 : selectbox', menu)
+# choice_box = st.selectbox('type2 : selectbox', menu)
 
-def pdf_to_document(uploaded_file):
-    temp_dir = tempfile.TemporaryDirectory()
-    temp_filepath = os.path.join(temp_dir.name, uploaded_file.name)
-    with open(temp_filepath, "wb") as f:
-        f.write(uploaded_file.getvalue())
-    loader = PyPDFLoader(temp_filepath)
-    pages = loader.load_and_split()
-    return pages
-
-#업로드 되면 동작하는 코드
-if uploaded_file is not None:
-    #pages = pdf_to_document(uploaded_file)
-
+def document_to_db(uploaded_file, size):    # 문서 크기에 맞게 사이즈 지정하면 좋을 것 같아서 para 넣었어용
+    pages = uploaded_file.load_and_split()
     #Split
     text_splitter = RecursiveCharacterTextSplitter(
         # Set a really small chunk size, just to show.
-        chunk_size = 500,
+        chunk_size = size,
         chunk_overlap  = 20,
         length_function = len,
         is_separator_regex = False,
@@ -65,10 +52,31 @@ if uploaded_file is not None:
 
     # load it into Chroma
     db = Chroma.from_documents(texts, embeddings_model)
+    return db
 
+#업로드 되면 동작하는 코드
+if uploaded_file is not None:
+    db_tv = document_to_db(tv_file, 500)
+    db_ac = document_to_db(ac_file, 500)
+    hm_tv = document_to_db(hm_file, 300)
+ 
     #Question
-    st.header("PDF에게 질문해보세요!!")
-    question = st.text_input('질문을 입력하세요')
+    st.header("기기를 선택하고 PDF에게 질문해보세요!!")
+
+    if choice_box == menu[0]
+        data = tv_file.load()
+        st.write(f"samsung_tv_manual.pdf : {len(data)}개의 페이지")
+        st.write("---")
+
+        question = st.text_input('질문을 입력하세요')
+        if st.button('TV에게 질문하기'):
+        with st.spinner('Wait for it...'):
+            llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+            qa_chain = RetrievalQA.from_chain_type(llm,retriever=db.as_retriever())
+            result = qa_chain({"query": question})
+            st.write(result["result"])
+
+
     
     if st.button('질문하기'):
         with st.spinner('Wait for it...'):
