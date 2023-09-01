@@ -30,7 +30,7 @@ pages = uploaded_file.load_and_split()
 
 menu = ['TV', '에어컨', '가습기']    #options
 choice = st.radio('type1 : radio', menu)
-choice.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 choice = st.selectbox('type2 : selectbox', menu)
 
 def pdf_to_document(uploaded_file):
