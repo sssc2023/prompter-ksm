@@ -25,7 +25,7 @@ st.title("ChatPDF")
 st.write("---")
 
 # 방 이미지
-img = Image.open('cyworld-room.jpg')
+img = Image.open('bondee.jpg')
 st.image(img)
 st.write("---")
 
