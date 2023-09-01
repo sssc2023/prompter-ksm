@@ -26,7 +26,7 @@ st.write("---")
 
 # 방 이미지
 cyworld_img = Image.open('cyworld-room.jpg')
-cyworld_img = cyworld_img.resize((1200,400))
+cyworld_img = cyworld_img.resize((794,398))
 st.image(cyworld_img)
 st.write("---")
 
@@ -64,7 +64,7 @@ if tv_file is not None:
     
     if choice_box == menu[0]:
         tv_img = Image.open('television.png')
-        tv_img = tv_img.resize((150, 150))
+        tv_img = tv_img.resize((100, 100))
         st.image(tv_img)
         question = st.text_input('질문을 입력하세요')
         if st.button('TV에게 질문하기'):
@@ -76,6 +76,7 @@ if tv_file is not None:
                 
     elif choice_box == menu[1]:
         ac_img = Image.open('air-conditioner.png')
+        ac_img = ac_img.resize((100, 100))
         st.image(ac_img)
         question = st.text_input('질문을 입력하세요')
         if st.button('에어컨에게 질문하기'):
@@ -87,6 +88,7 @@ if tv_file is not None:
 
     elif choice_box == menu[2]:
         hm_img = Image.open('humidifier.png')
+        hm_img = hm_img.resize((100, 100))
         st.image(hm_img)
         question = st.text_input('질문을 입력하세요')
         if st.button('가습기에게 질문하기'):
