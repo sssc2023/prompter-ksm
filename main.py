@@ -21,7 +21,7 @@ uploaded_file = st.file_uploader("PDF 파일을 올려주세요!",type=['pdf'])
 st.write("---")
 
 menu = ['TV를 바라보셨나요?', '에어컨을 바라보셨나요?', '가습기를 바라보셨나요?']
-choice = st.radio(meun)
+choice = st.radio(menu)
 # choice = st.sidebar.selectbox('메뉴', menu)
 
 def pdf_to_document(uploaded_file):
