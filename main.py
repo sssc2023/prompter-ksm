@@ -17,13 +17,13 @@ st.title("ChatPDF")
 st.write("---")
 
 #파일 업로드
-uploaded_file = st.file_uploader("PDF 파일을 올려주세요!",type=['pdf'])
+# uploaded_file = st.file_uploader("PDF 파일을 올려주세요!",type=['pdf'])
 st.write("---")
 
 menu = ['TV', '에어컨', '가습기']
 choice = st.radio('type1 : radio', menu)
 choice = st.selectbox('type2 : selectbox', menu)
-
+'''
 def pdf_to_document(uploaded_file):
     temp_dir = tempfile.TemporaryDirectory()
     temp_filepath = os.path.join(temp_dir.name, uploaded_file.name)
@@ -32,10 +32,13 @@ def pdf_to_document(uploaded_file):
     loader = PyPDFLoader(temp_filepath)
     pages = loader.load_and_split()
     return pages
+'''
+uploaded_file = PyPDFLoader("everhome_humidifier_manual.pdf")
+pages = loader.load_and_split()
 
 #업로드 되면 동작하는 코드
 if uploaded_file is not None:
-    pages = pdf_to_document(uploaded_file)
+    # pages = pdf_to_document(uploaded_file)
 
     #Split
     text_splitter = RecursiveCharacterTextSplitter(
