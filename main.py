@@ -25,8 +25,8 @@ st.title("ChatPDF")
 st.write("---")
 
 # 방 이미지
-img = Image.open('bondee.jpg')
-st.image(img)
+cyworld_img = Image.open('cyworld-room.jpg')
+st.image(cyworld_img)
 st.write("---")
 
 def document_to_db(uploaded_file, size):    # 문서 크기에 맞게 사이즈 지정하면 좋을 것 같아서 para 넣었어용
@@ -55,13 +55,15 @@ if tv_file is not None:
     hm_tv = document_to_db(hm_file, 300)
 
     #Choice
+    st.header("기기를 선택하고 PDF에게 질문해보세요!!")
     menu = ['TV', '에어컨', '가습기']    #options
     # choice_box = st.radio('기기를 선택하세요', menu)
     # st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)    
     choice_box = st.selectbox('기기를 선택하세요', menu)
-    st.header("기기를 선택하고 PDF에게 질문해보세요!!")
     
     if choice_box == menu[0]:
+        tv_img = Image.open('television.png')
+        st.image(tv_img)
         question = st.text_input('질문을 입력하세요')
         if st.button('TV에게 질문하기'):
             with st.spinner('Wait for it...'):
@@ -71,6 +73,8 @@ if tv_file is not None:
                 st.write(result["result"])
                 
     elif choice_box == menu[1]:
+        ac_img = Image.open('air-conditioner.png')
+        st.image(ac_img)
         question = st.text_input('질문을 입력하세요')
         if st.button('에어컨에게 질문하기'):
             with st.spinner('Wait for it...'):
@@ -80,6 +84,8 @@ if tv_file is not None:
                 st.write(result["result"])
 
     elif choice_box == menu[2]:
+        hm_img = Image.open('humidifier.png')
+        st.image(hm_img)
         question = st.text_input('질문을 입력하세요')
         if st.button('가습기에게 질문하기'):
             with st.spinner('Wait for it...'):
