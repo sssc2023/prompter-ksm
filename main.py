@@ -30,9 +30,6 @@ tv_file = PyPDFLoader("samsung_tv_manual.pdf")
 ac_file = PyPDFLoader("lg_ac_manual.pdf")
 hm_file = PyPDFLoader("winix_humidifier_manual.pdf")
 
-menu = ['TV', '에어컨', '가습기']    #options
-choice_box = st.radio('type1 : radio', menu)
-st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 # choice_box = st.selectbox('type2 : selectbox', menu)
 
 def document_to_db(uploaded_file, size):    # 문서 크기에 맞게 사이즈 지정하면 좋을 것 같아서 para 넣었어용
@@ -62,6 +59,9 @@ if tv_file is not None:
  
     #Question
     st.header("기기를 선택하고 PDF에게 질문해보세요!!")
+    menu = ['TV', '에어컨', '가습기']    #options
+    choice_box = st.radio('여기서 선택♥', menu)
+    st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
     if choice_box == menu[0]:
         data = tv_file.load()
@@ -72,12 +72,24 @@ if tv_file is not None:
         if st.button('TV에게 질문하기'):
             with st.spinner('Wait for it...'):
                 llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
-                qa_chain = RetrievalQA.from_chain_type(llm,retriever=db.as_retriever())
+                qa_chain = RetrievalQA.from_chain_type(llm,retriever=db_tv.as_retriever())
+                result = qa_chain({"query": question})
+                st.write(result["result"])
+                
+    elif choice_box == menu[1]:
+        data = ac_file.load()
+        st.write(f"lg_ac_manual.pdf : {len(data)}개의 페이지")
+        st.write("---")
+
+        question = st.text_input('질문을 입력하세요')
+        if st.button('TV에게 질문하기'):
+            with st.spinner('Wait for it...'):
+                llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+                qa_chain = RetrievalQA.from_chain_type(llm,retriever=db_ac.as_retriever())
                 result = qa_chain({"query": question})
                 st.write(result["result"])
 
 
-    
     if st.button('질문하기'):
         with st.spinner('Wait for it...'):
             llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
