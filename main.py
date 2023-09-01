@@ -25,10 +25,12 @@ st.write("---")
 uploaded_file = PyPDFLoader("samsung_tv_manual.pdf")
 data = uploaded_file.load()
 print(f"{len(data)}개의 문서, {len(data[0].page_content)}개의 단어")
+st.write(f"{len(data)}개의 문서, {len(data[0].page_content)}개의 단어")
 pages = uploaded_file.load_and_split()
 
-menu = ['TV', '에어컨', '가습기']
+menu = ['TV', '에어컨', '가습기']    #options
 choice = st.radio('type1 : radio', menu)
+choice.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 choice = st.selectbox('type2 : selectbox', menu)
 
 def pdf_to_document(uploaded_file):
