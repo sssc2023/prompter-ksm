@@ -23,7 +23,7 @@ st.write("---")
 menu = ['TV', '에어컨', '가습기']
 choice = st.radio('type1 : radio', menu)
 choice = st.selectbox('type2 : selectbox', menu)
-'''
+
 def pdf_to_document(uploaded_file):
     temp_dir = tempfile.TemporaryDirectory()
     temp_filepath = os.path.join(temp_dir.name, uploaded_file.name)
@@ -32,7 +32,7 @@ def pdf_to_document(uploaded_file):
     loader = PyPDFLoader(temp_filepath)
     pages = loader.load_and_split()
     return pages
-'''
+    
 uploaded_file = PyPDFLoader("everhome_humidifier_manual.pdf")
 pages = uploaded_file.load_and_split()
 
@@ -43,7 +43,7 @@ if uploaded_file is not None:
     #Split
     text_splitter = RecursiveCharacterTextSplitter(
         # Set a really small chunk size, just to show.
-        chunk_size = 800,
+        chunk_size = 1000,
         chunk_overlap  = 40,
         length_function = len,
         is_separator_regex = False,
