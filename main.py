@@ -20,6 +20,9 @@ st.write("---")
 uploaded_file = st.file_uploader("PDF 파일을 올려주세요!",type=['pdf'])
 st.write("---")
 
+menu = ['TV를 바라보셨나요?', '에어컨을 바라보셨나요?', '가습기를 바라보셨나요?']
+choice = st.sidebar.selectbox('메뉴', menu)
+
 def pdf_to_document(uploaded_file):
     temp_dir = tempfile.TemporaryDirectory()
     temp_filepath = os.path.join(temp_dir.name, uploaded_file.name)
@@ -52,8 +55,6 @@ if uploaded_file is not None:
     #Question
     st.header("PDF에게 질문해보세요!!")
     question = st.text_input('질문을 입력하세요')
-    menu = ['TV를 바라보셨나요?', '에어컨을 바라보셨나요?', '가습기를 바라보셨나요?']
-    choice = st.sidebar.selectbox('메뉴', menu)
     
     if st.button('질문하기'):
         with st.spinner('Wait for it...'):
