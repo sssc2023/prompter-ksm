@@ -26,7 +26,7 @@ st.write("---")
 
 # 방 이미지
 cyworld_img = Image.open('cyworld-room.jpg')
-cyworld_img = cyworld_img.resize(400, 1200)
+cyworld_img = cyworld_img.resize((400, 1200))
 st.image(cyworld_img)
 st.write("---")
 
@@ -64,7 +64,7 @@ if tv_file is not None:
     
     if choice_box == menu[0]:
         tv_img = Image.open('television.png')
-        tv_img = tv_img.resize(150, 150)
+        tv_img = tv_img.resize((150, 150))
         st.image(tv_img)
         question = st.text_input('질문을 입력하세요')
         if st.button('TV에게 질문하기'):
