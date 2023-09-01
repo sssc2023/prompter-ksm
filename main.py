@@ -24,7 +24,7 @@ st.write("---")
 
 uploaded_file = PyPDFLoader("samsung_tv_manual.pdf")
 data = uploaded_file.load()
-print(f"{len(data)}개의 문서, {len(data[0].page_content)개의 단어}")
+print(f"{len(data)}개의 문서, {len(data[0].page_content)}개의 단어")
 pages = uploaded_file.load_and_split()
 
 menu = ['TV', '에어컨', '가습기']
