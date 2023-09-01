@@ -22,7 +22,7 @@ st.write("---")
 
 menu = ['TV를 바라보셨나요?', '에어컨을 바라보셨나요?', '가습기를 바라보셨나요?']
 choice = st.radio('하나를 선택하세요!', menu)
-# choice = st.sidebar.selectbox('메뉴', menu)
+choice = st.selectbox('메뉴', menu)
 
 def pdf_to_document(uploaded_file):
     temp_dir = tempfile.TemporaryDirectory()
