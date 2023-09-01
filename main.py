@@ -34,7 +34,7 @@ def pdf_to_document(uploaded_file):
     return pages
 '''
 uploaded_file = PyPDFLoader("everhome_humidifier_manual.pdf")
-pages = loader.load_and_split()
+pages = uploaded_file.load_and_split()
 
 #업로드 되면 동작하는 코드
 if uploaded_file is not None:
