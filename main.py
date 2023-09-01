@@ -17,8 +17,11 @@ st.title("ChatPDF")
 st.write("---")
 
 #파일 업로드
-# uploaded_file = st.file_uploader("PDF 파일을 올려주세요!",type=['pdf'])
+uploaded_file = st.file_uploader("PDF 파일을 올려주세요!",type=['pdf'])
 st.write("---")
+#pdf 올려두기
+uploaded_file = PyPDFLoader("everhome_humidifier_manual.pdf")
+pages = uploaded_file.load_and_split()
 
 menu = ['TV', '에어컨', '가습기']
 choice = st.radio('type1 : radio', menu)
@@ -33,8 +36,6 @@ def pdf_to_document(uploaded_file):
     pages = loader.load_and_split()
     return pages
     
-uploaded_file = PyPDFLoader("everhome_humidifier_manual.pdf")
-pages = uploaded_file.load_and_split()
 
 #업로드 되면 동작하는 코드
 if uploaded_file is not None:
@@ -43,7 +44,7 @@ if uploaded_file is not None:
     #Split
     text_splitter = RecursiveCharacterTextSplitter(
         # Set a really small chunk size, just to show.
-        chunk_size = 1000,
+        chunk_size = 600,
         chunk_overlap  = 40,
         length_function = len,
         is_separator_regex = False,
